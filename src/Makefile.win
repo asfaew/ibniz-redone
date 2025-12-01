@@ -1,5 +1,5 @@
 # For normal builds; remove -DX11 -lX11 from flags if you don't have X11
-CC=gcc
+CC=i686-elf-gcc
 EXE=ibniz.exe
 FLAGS=-L./SDL-1.2.14/lib -I./SDL-1.2.14/include -static -lmingw32 SDL-1.2.14/lib/libSDL.a SDL-1.2.14/lib/libSDLmain.a -mwindows -lwinmm
 all: ibniz.exe
