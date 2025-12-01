@@ -176,6 +176,26 @@ void pmv_video_txy()
   vm.stack[vm.sp]=((p&255)<<9)-0x10000;
 }
 
+void pmv_x()
+{
+  int p=vm.sp&65535;
+  vm.currentwcount[vm.mediacontext]++;
+  if(vm.visiblepage==(vm.sp>>16))
+    flipvideopage();
+  MOVESP(1);
+  vm.stack[vm.sp]=((p&255)<<9)-0x10000;
+}
+
+void pmv_y()
+{
+  int p=vm.sp&65535;
+  vm.currentwcount[vm.mediacontext]++;
+  if(vm.visiblepage==(vm.sp>>16))
+    flipvideopage();
+  MOVESP(1);
+  vm.stack[vm.sp]=(p<<1)-0x10000;
+}
+
 void pmv_setfunc()
 {
   if(vm.mediacontext==1)
@@ -555,6 +575,16 @@ int vm_run()
       
       case('G'):	// getbits
         *a=ROL(getdatabits((*a>>16)&31),16);
+        break;
+
+      case('y'):
+        MOVESP(1);
+        vm.stack[vm.sp]=pmv_y();
+        break;
+
+      case('Y'):
+        MOVESP(1);
+        vm.stack[vm.sp]=pmv_x();
         break;
     }
   }
