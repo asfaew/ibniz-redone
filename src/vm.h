@@ -83,6 +83,7 @@ GLOBAL struct
 
 #define IBNIZ_ROR(a,b) ROR((a),(((b)>>16)&31))
 #define IBNIZ_SHL(a,b) (((b)&(32<<16))?((a)>>(((~(b))>>16)&31)):((a)<<((((b))>>16)&31)))
+#define IBNIZ_ROL(a,b) ROL((a),(((b)<<16)&31))
 
 #define IBNIZ_ISNEG(a)  ((a)<0?(a):0)
 #define IBNIZ_ISPOS(a)  ((a)>0?(a):0)
