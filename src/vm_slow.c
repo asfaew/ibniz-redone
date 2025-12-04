@@ -586,6 +586,11 @@ int vm_run()
         MOVESP(1);
         vm.stack[vm.sp]=pmv_x();
         break;
+
+      case('D'):
+        MOVESP(-1)
+        vm.stack[vm.sp]=IBNIZ_ROL(vm.stack[vm.sp],*a)
+        break;
     }
   }
   return CYCLESPERRUN;
